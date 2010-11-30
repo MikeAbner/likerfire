@@ -10,7 +10,7 @@ class UserTest < Test::Unit::TestCase
   def test_it_should_create_a_new_user_when_none_exists
     u = User.new
 
-    user = User.create_or_update_with @auth_hash
+    user = User.create_or_update_from @auth_hash
     
     u = User.first
     assert u
@@ -25,7 +25,7 @@ class UserTest < Test::Unit::TestCase
     assert @existing_user.first_name == "Mike"
     assert @existing_user.nickname == "Mikey"
     
-    user = User.create_or_update_with @auth_hash
+    user = User.create_or_update_from @auth_hash
     
     assert user.name == "Michael Abner"
     assert user.first_name == "Michael"

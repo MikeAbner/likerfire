@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   
-  def self.create_or_update_with auth_hash
+  def self.create_or_update_from auth_hash
     id = auth_hash["uid"]
     name = auth_hash["user_info"]["name"]
     f_name = auth_hash["user_info"]["first_name"]
@@ -39,15 +39,8 @@ class User < ActiveRecord::Base
     my_likes = likes
     friend_likes = FacebookApi.likes_for_friend self, friend_id
     
-    my_ids = my_likes.map { |l| l.id }
-    friend_ids = friend_likes.map { |l| l.id }
-    
-    same_ids = my_ids.select do |id|
-      friend_ids.include? id
-    end
-    
     same_likes = my_likes.select do |like|
-      same_ids.include? like.id
+      friend_likes.include? like
     end
   end
   
