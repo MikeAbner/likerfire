@@ -1,0 +1,39 @@
+%html
+  %head
+    %title Likerfire - The "Facebook Likes" Comparison Engine - Compare you "Likes" to you friends!
+    %script{:type => "text/javascript", 
+      :src => "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"}
+  %body
+    %h1 
+      Hello 
+      = @user.name
+      !
+    %p
+      Please choose a friend from the list below to see how your "Likes" compare.
+    %p
+      Choose a friend
+      %select{:id => 'friends_list'}
+        - @friends.each do |friend|
+          %option{:value => "#{friend.id}"}
+            = friend.name
+      %button{:id => 'compare_likes'} Compare
+    #results{:width => 500, :height => 500}
+      
+:javascript
+  $(document).ready(function(){
+    $("#results").hide();
+  
+    $("#compare_likes").click(function(){
+      $("#results").hide();
+      friend_id = $("#friends_list").val();
+      $.ajax({
+        url: '/users/compare_likes/' + friend_id,
+        dataType: 'html',
+        success: function(data) {
+          $("#results").html(data);
+          $("#results").show();
+        }
+      });
+      
+    });
+  });

@@ -15,4 +15,5 @@ class RootTest < Test::Unit::TestCase
     assert last_response.body =~ /Welcome to Likerfire/
     assert last_response.body =~ /log in to Facebook/
   end
+  
 end

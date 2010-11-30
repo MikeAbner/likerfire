@@ -1,5 +1,3 @@
-
-
 class Likerfire < Sinatra::Base
   
   ["models"].each do |dir|
@@ -18,5 +16,6 @@ class Likerfire < Sinatra::Base
   
   load 'lib/routes/root_routes.rb'
   load 'lib/routes/authentication_routes.rb'
+  load 'lib/routes/user_routes.rb'
 
 end

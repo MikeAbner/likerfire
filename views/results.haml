@@ -1,0 +1,12 @@
+%h1 The results are in!
+%p
+  You share
+  = @same_likes.size
+  "Likes" with your friend!
+%p
+  - if @same_likes.size != 0
+    They are:
+    %ul
+      - @same_likes.each do |like|
+        %li
+          = like.name

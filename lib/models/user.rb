@@ -26,4 +26,29 @@ class User < ActiveRecord::Base
     user
   end
   
+  def friends
+    frnds = FacebookApi.friends_for self
+    frnds.sort {|x,y| x.name <=> y.name }
+  end
+  
+  def likes
+    FacebookApi.likes_for self
+  end
+  
+  def compare_likes_with friend_id
+    my_likes = likes
+    friend_likes = FacebookApi.likes_for_friend self, friend_id
+    
+    my_ids = my_likes.map { |l| l.id }
+    friend_ids = friend_likes.map { |l| l.id }
+    
+    same_ids = my_ids.select do |id|
+      friend_ids.include? id
+    end
+    
+    same_likes = my_likes.select do |like|
+      same_ids.include? like.id
+    end
+  end
+  
 end
