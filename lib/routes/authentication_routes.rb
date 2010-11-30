@@ -4,7 +4,7 @@ class Likerfire
   get '/auth/facebook/callback' do
     @auth_hash = request.env['omniauth.auth']
     
-    pp @auth_hash
+    User.create_or_update_with @auth_hash
   end
   
   puts "done"
