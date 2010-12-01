@@ -15,4 +15,13 @@ class UserTest < Test::Unit::TestCase
     assert user.nickname = "mike.abner"
     assert user.token = "120636147999305|2.KNQotlfzPilJ4mxHQZ5rWA__.3600.1291107600-527248067|B0WlbdVY-eeaYr_3rxqWCq-m78s"
   end
+  def test_should_get_the_list_of_friends
+    
+  end
+  def test_should_get_the_list_of_likes
+    
+  end
+  def test_should_compare_list_of_likes_with_friends
+    
+  end
 end
