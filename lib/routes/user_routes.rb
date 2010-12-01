@@ -1,4 +1,6 @@
 class Likerfire
+  print "Loading User routes..."
+  
   get '/users/compare_likes/:friend_id' do |friend_id|
     @user = session['current_user']
     
@@ -6,4 +8,6 @@ class Likerfire
     
     haml :results
   end
+  
+  puts "done"
 end
