@@ -1,4 +1,3 @@
-require 'active_record'
 require 'lib/models/user'
 require 'lib/models/facebook_api'
 require 'json'
