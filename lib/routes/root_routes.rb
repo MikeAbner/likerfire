@@ -13,10 +13,5 @@ class Likerfire
     haml :welcome
   end
   
-  get '/results' do
-    
-    haml :results
-  end
-  
   puts "done"
 end
