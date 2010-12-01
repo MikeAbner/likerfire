@@ -2,6 +2,10 @@ class User #< ActiveRecord::Base
   
   attr_accessor :facebook_id, :name, :first_name, :last_name, :nickname, :token
   
+  # the facebook_api accessor is so we can write a mock object for testing.  In
+  # production this method wouldn't be called, but in testing it's helpful
+  # so we don't have to rely on internet connections or on facebook itself
+  # to run our tests.
   attr_accessor :facebook_api
   
   def initialize auth_hash
@@ -27,9 +31,7 @@ class User #< ActiveRecord::Base
     my_likes = likes
     friend_likes = @facebook_api.likes_for friend_id, @token
     
-    same_likes = my_likes.select do |like|
-      friend_likes.include? like
-    end
+    same_likes = my_likes.select { |like| friend_likes.include? like }
   end
   
 end

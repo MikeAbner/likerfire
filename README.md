@@ -11,14 +11,16 @@ UI.  In the end I went without a database as well.  I started the project
 with a database, but it only had one table for users and it didn't make much sense
 to continue using one when I was updating the entire contents of a User object every
 time a user logged in.  I chose to use OmniAuth to do the Facebook OAuth authentication
-because it was so easy to set up when I tried it out on a Twitter app this past weekend.
+because it was so easy to set up when I tried it out on a Twitter app this past weekend.  I 
+also stumbled on the rest-graph gem when looking for some facebook API information and it
+turned out to be really simple and helpful to use.
 The file and folder layout of the project is meant to be very similar to the ruby standard
 gem file and folder layout.  I like using that since it should be familiar to ruby developers.
 I also like to break up the main Sinatra app file into multiple route files based roughly
 around resources so that they are easier to manage.  On thing I did not do that I would
 usually do is to have a Controller layer that sits between the routes and the models.
 I generally like to have the route definitions handling the HTTP requests and responses 
-and then have a controller handle marshalling the submitted data with the models. 
+and then have a controller handle marshaling the submitted data with the models. 
  Since this app was so small I left out that layer.  Finally, I went ahead and just used 
  TestUnit and Rack-Test for testing.  I had a little bit of trouble figuring out how to store variables in
 the Rack-Test sessions and after googling for some insight I found that there doesn't
